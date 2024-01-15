@@ -2,8 +2,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
-using PogodaApp.Models;
-using PogodaApp.Services;
+using SaleCheckApp.Models;
+using SaleCheckApp.Services;
 using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
 
@@ -33,7 +33,7 @@ IMongoDatabase database = client.GetDatabase(url.DatabaseName);
 IMongoCollection<ScrapedDataModel> scrapedData = database.GetCollection<ScrapedDataModel>("SaleCheckTest");
 
 builder.Services.AddSingleton(scrapedData);
-builder.Services.AddScoped<IWeatherDataService, WeatherDataService>();
+builder.Services.AddScoped<ISaleCheckDataService, SaleCheckDataService>();
 builder.Services.AddScoped<Scrapper>(); // Register the Scrapper class
 
 var app = builder.Build();

@@ -1,20 +1,21 @@
 ﻿using HtmlAgilityPack;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
-using PogodaApp.Models;
-using PogodaApp.Services;
+using SaleCheckApp.Models;
+using SaleCheckApp.Services;
+using OpenQA.Selenium.Edge;
 
 public class Scrapper
 {
-    private readonly IWeatherDataService _weatherDataService;
+    private readonly ISaleCheckDataService _SaleCheckDataService;
     private readonly IWebDriver _webDriver;
     public string WebsiteString { get; set; }
 
-    public Scrapper(IWeatherDataService weatherDataService)
+    public Scrapper(ISaleCheckDataService SaleCheckDataService)
     {
-        _weatherDataService = weatherDataService;
+        _SaleCheckDataService = SaleCheckDataService;
         var driver = new EdgeDriver();
-        driver.Url = "https://api.allegro.pl/sale/categories/modelarstwo";
+        driver.Url = "https://allegro.pl/kategoria/modelarstwo-1061/";
 
         WebsiteString = driver.PageSource;
     }
@@ -41,7 +42,7 @@ public class Scrapper
                 var linkNode = container.SelectSingleNode(".//a[contains(@class, 'product-link')]");
 
                 // Sprawdzenie, czy węzły istnieją przed próbą pobrania ich wartości
-                if (productNameNode != null)
+                /*if (productNameNode != null)
                 {
                     data.AllegroName = productNameNode.InnerText.Trim();
                 }
@@ -55,13 +56,13 @@ public class Scrapper
                 {
                     data.Link = linkNode.GetAttributeValue("href", "").Trim();
                 }
-
+                */
                 scrapedDataList.Add(data);
             }
 
             foreach (var data in scrapedDataList)
             {
-                await _weatherDataService.CreateAsync(data);
+                await _SaleCheckDataService.CreateAsync(data);
             }
         }
         else

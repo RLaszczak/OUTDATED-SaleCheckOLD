@@ -1,20 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PogodaApp.Models;
-using PogodaApp.Services;
+using SaleCheckApp.Models;
+using SaleCheckApp.Services;
 using System.Diagnostics;
 using HtmlAgilityPack;
 
-namespace PogodaApp.Controllers
+namespace SaleCheckApp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IWeatherDataService _weatherDataService;
+        private readonly ISaleCheckDataService _SaleCheckDataService;
 
-        public HomeController(ILogger<HomeController> logger, IWeatherDataService weatherDataService)
+        public HomeController(ILogger<HomeController> logger, ISaleCheckDataService SaleCheckDataService)
         {
             _logger = logger;
-            _weatherDataService = weatherDataService;
+            _SaleCheckDataService = SaleCheckDataService;
         }
 
         private static async Task<string> CallUrl(string fullUrl)

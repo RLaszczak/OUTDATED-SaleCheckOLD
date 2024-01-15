@@ -1,4 +1,4 @@
-namespace PogodaApp.Models
+namespace SaleCheckApp.Models
 {
     public class ErrorViewModel
     {

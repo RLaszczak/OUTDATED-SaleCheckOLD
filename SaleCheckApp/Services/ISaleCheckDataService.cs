@@ -1,8 +1,8 @@
-﻿using PogodaApp.Models;
+﻿using SaleCheckApp.Models;
 
-namespace PogodaApp.Services;
+namespace SaleCheckApp.Services;
 
-public interface IWeatherDataService
+public interface ISaleCheckDataService
 {
     public Task<List<ScrapedDataModel>> GetAllAsync(CancellationToken cancellationToken);
     public Task<ScrapedDataModel> GetOneAsync(string id, CancellationToken cancellationToken);
