@@ -14,7 +14,7 @@ public class Scrapper
     {
         _weatherDataService = weatherDataService;
         var driver = new EdgeDriver();
-        driver.Url = "https://allegro.pl/kategoria/modelarstwo-1061/";
+        driver.Url = "https://api.allegro.pl/sale/categories/modelarstwo";
 
         WebsiteString = driver.PageSource;
     }
